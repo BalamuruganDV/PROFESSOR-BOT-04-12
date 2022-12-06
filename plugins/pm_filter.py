@@ -215,17 +215,6 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
-        
-    btn.insert(0,
-            [
-                InlineKeyboardButton("🎭 KGF ALL", url="https://t.me/samraott1234/65"),
-                InlineKeyboardButton("ADMIN", url="https://t.me/Priyanka_samrottbot")
-            ])
-
-    btn.insert(0, [
-        InlineKeyboardButton("🅷🅾🆆 🆃🅾 🅳🅾🆆🅽🅻🅾🅰🅳", url="https://youtu.be/KAXxaB1j_dE")#unknown
-    ])
-    
 
     if 0 < offset <= 10:
         off_set = 0
@@ -1304,17 +1293,6 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
-        
-    btn.insert(0,
-            [
-                InlineKeyboardButton("🎭 KGF ALL", url="https://t.me/samraott1234/65"),
-                InlineKeyboardButton("ADMIN", url="https://t.me/Priyanka_samrottbot")
-            ])
-
-    btn.insert(0, [
-        InlineKeyboardButton("🅷🅾🆆 🆃🅾 🅳🅾🆆🅽🅻🅾🅰🅳", url="https://youtu.be/KAXxaB1j_dE")#unknown
-    ])
-    
 
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
@@ -1326,42 +1304,42 @@ async def auto_filter(client, msg, spoll=False):
         )
     else:
         btn.append(
-            [InlineKeyboardButton(text="📄 𝗣𝗮𝗴𝗲 1/1", callback_data="pages")]       
+            [InlineKeyboardButton(text="📄 𝗣𝗮𝗴𝗲 1/1", callback_data="pages")]
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
     if imdb:
         cap = TEMPLATE.format(
-            query=search,
-            mention_bot=temp.MENTION,
-            mention_user=message.from_user.mention if message.from_user else message.sender_chat.title,
-            title=imdb['title'],
-            votes=imdb['votes'],
-            aka=imdb["aka"],
-            seasons=imdb["seasons"],
-            box_office=imdb['box_office'],
-            localized_title=imdb['localized_title'],
-            kind=imdb['kind'],
-            imdb_id=imdb["imdb_id"],
-            cast=imdb["cast"],
-            runtime=imdb["runtime"],
-            countries=imdb["countries"],
-            certificates=imdb["certificates"],
-            languages=imdb["languages"],
-            director=imdb["director"],
-            writer=imdb["writer"],
-            producer=imdb["producer"],
-            composer=imdb["composer"],
-            cinematographer=imdb["cinematographer"],
-            music_team=imdb["music_team"],
-            distributors=imdb["distributors"],
-            release_date=imdb['release_date'],
-            year=imdb['year'],
-            genres=imdb['genres'],
-            poster=imdb['poster'],
-            plot=imdb['plot'],
-            rating=imdb['rating'],
-            url=imdb['url'],
+            group = message.chat.title,
+            requested = message.from_user.mention,
+            query = search,
+            title = imdb['title'],
+            votes = imdb['votes'],
+            aka = imdb["aka"],
+            seasons = imdb["seasons"],
+            box_office = imdb['box_office'],
+            localized_title = imdb['localized_title'],
+            kind = imdb['kind'],
+            imdb_id = imdb["imdb_id"],
+            cast = imdb["cast"],
+            runtime = imdb["runtime"],
+            countries = imdb["countries"],
+            certificates = imdb["certificates"],
+            languages = imdb["languages"],
+            director = imdb["director"],
+            writer = imdb["writer"],
+            producer = imdb["producer"],
+            composer = imdb["composer"],
+            cinematographer = imdb["cinematographer"],
+            music_team = imdb["music_team"],
+            distributors = imdb["distributors"],
+            release_date = imdb['release_date'],
+            year = imdb['year'],
+            genres = imdb['genres'],
+            poster = imdb['poster'],
+            plot = imdb['plot'],
+            rating = imdb['rating'],
+            url = imdb['url'],
             **locals()
         )
     else:
@@ -1387,12 +1365,6 @@ async def auto_filter(client, msg, spoll=False):
         await asyncio.sleep(IMDB_DELET_TIME)
         await fuk.delete()        
     if spoll:
-        await msg.message.delete()
-    else:
-        fuk = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-        await asyncio.sleep(IMDB_DELET_TIME)
-        await fuk.delete()        
-    if pmspoll:
         await msg.message.delete()
 
 
@@ -1430,40 +1402,40 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
         btn.append(
             [InlineKeyboardButton(text="📄 𝗣𝗮𝗴𝗲 1/1", callback_data="pages")]
         )
-    imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
-    TEMPLATE = settings['template']
+    imdb = await get_poster(search) if IMDB else None
+    TEMPLATE = IMDB_TEMPLATE
     if imdb:
         cap = TEMPLATE.format(
-            query=search,
-            mention_bot=temp.MENTION,
-            mention_user=message.from_user.mention if message.from_user else message.sender_chat.title,
-            title=imdb['title'],
-            votes=imdb['votes'],
-            aka=imdb["aka"],
-            seasons=imdb["seasons"],
-            box_office=imdb['box_office'],
-            localized_title=imdb['localized_title'],
-            kind=imdb['kind'],
-            imdb_id=imdb["imdb_id"],
-            cast=imdb["cast"],
-            runtime=imdb["runtime"],
-            countries=imdb["countries"],
-            certificates=imdb["certificates"],
-            languages=imdb["languages"],
-            director=imdb["director"],
-            writer=imdb["writer"],
-            producer=imdb["producer"],
-            composer=imdb["composer"],
-            cinematographer=imdb["cinematographer"],
-            music_team=imdb["music_team"],
-            distributors=imdb["distributors"],
-            release_date=imdb['release_date'],
-            year=imdb['year'],
-            genres=imdb['genres'],
-            poster=imdb['poster'],
-            plot=imdb['plot'],
-            rating=imdb['rating'],
-            url=imdb['url'],
+            group = message.chat.title,
+            requested = message.from_user.mention,
+            query = search,
+            title = imdb['title'],
+            votes = imdb['votes'],
+            aka = imdb["aka"],
+            seasons = imdb["seasons"],
+            box_office = imdb['box_office'],
+            localized_title = imdb['localized_title'],
+            kind = imdb['kind'],
+            imdb_id = imdb["imdb_id"],
+            cast = imdb["cast"],
+            runtime = imdb["runtime"],
+            countries = imdb["countries"],
+            certificates = imdb["certificates"],
+            languages = imdb["languages"],
+            director = imdb["director"],
+            writer = imdb["writer"],
+            producer = imdb["producer"],
+            composer = imdb["composer"],
+            cinematographer = imdb["cinematographer"],
+            music_team = imdb["music_team"],
+            distributors = imdb["distributors"],
+            release_date = imdb['release_date'],
+            year = imdb['year'],
+            genres = imdb['genres'],
+            poster = imdb['poster'],
+            plot = imdb['plot'],
+            rating = imdb['rating'],
+            url = imdb['url'],
             **locals()
         )
     else:
@@ -1488,13 +1460,7 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
         fuk = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
         await asyncio.sleep(IMDB_DELET_TIME)
         await fuk.delete()        
-    if spoll:
-        await msg.message.delete()
-    else:
-        fuk = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-        await asyncio.sleep(IMDB_DELET_TIME)
-        await fuk.delete()        
-    if spoll:
+    if pmspoll:
         await msg.message.delete()
 
 async def pm_spoll_choker(msg):
@@ -1670,7 +1636,7 @@ async def global_filters(client, message, text=False):
                                 disable_web_page_preview=True,
                                 reply_to_message_id=reply_id
                             )
-                            await asyncio.sleep(SELF_DELETE_SECONDS)
+                            await asyncio.sleep(IMDB_DELET_TIME)
                             await knd3.delete()
                             await message.delete()
 
@@ -1683,7 +1649,7 @@ async def global_filters(client, message, text=False):
                                 reply_markup=InlineKeyboardMarkup(button),
                                 reply_to_message_id=reply_id
                             )
-                            await asyncio.sleep(SELF_DELETE_SECONDS)
+                            await asyncio.sleep(IMDB_DELET_TIME)
                             await knd2.delete()
                             await message.delete()
 
@@ -1694,7 +1660,7 @@ async def global_filters(client, message, text=False):
                             caption=reply_text or "",
                             reply_to_message_id=reply_id
                         )
-                        await asyncio.sleep(SELF_DELETE_SECONDS)
+                        await asyncio.sleep(IMDB_DELET_TIME)
                         await knd1.delete()
                         await message.delete()
 
@@ -1706,7 +1672,7 @@ async def global_filters(client, message, text=False):
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id
                         )
-                        await asyncio.sleep(SELF_DELETE_SECONDS)
+                        await asyncio.sleep(IMDB_DELET_TIME)
                         await knd.delete()
                         await message.delete()
 
@@ -1715,3 +1681,8 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
+
+
+
+
+
