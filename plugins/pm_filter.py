@@ -1389,9 +1389,10 @@ async def auto_filter(client, msg, spoll=False):
                 await fek.delete()
     else:
         fuk = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-        if SELF_DELETE:
-            await asyncio.sleep(SELF_DELETE_SECONDS)
-            await fuk.delete()
+        await asyncio.sleep(IMDB_DELET_TIME)
+        await fuk.delete()        
+    if pmspoll:
+        await msg.message.delete()
 
 
 async def pm_AutoFilter(client, msg, pmspoll=False):
@@ -1489,9 +1490,10 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
                 await fek.delete()
     else:
         fuk = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-        if SELF_DELETE:
-            await asyncio.sleep(SELF_DELETE_SECONDS)
-            await fuk.delete()
+        await asyncio.sleep(IMDB_DELET_TIME)
+        await fuk.delete()        
+    if spoll:
+        await msg.message.delete()
 
 async def pm_spoll_choker(msg):
     query = re.sub(
