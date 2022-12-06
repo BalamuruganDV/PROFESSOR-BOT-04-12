@@ -159,19 +159,7 @@ async def pm_next_page(bot, query):
                 InlineKeyboardButton(f"🗓 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),
                 InlineKeyboardButton("NEXT ⏩", callback_data=f"pmnext_{req}_{key}_{n_offset}")
             ],
-        ]
-            for file in files
-        ]
-        
-    btn.insert(0,
-            [
-                InlineKeyboardButton("🎭 KGF ALL", url="https://t.me/samraott1234/65"),
-            ])
-
-    btn.insert(0, [
-        InlineKeyboardButton("🅷🅾🆆 🆃🅾 🅳🅾🆆🅽🅻🅾🅰🅳", url="https://youtu.be/KAXxaB1j_dE")#unknown
-    ])
-            
+                    
     try:
         await query.edit_message_reply_markup(
             reply_markup=InlineKeyboardMarkup(btn)
@@ -1319,16 +1307,6 @@ async def auto_filter(client, msg, spoll=False):
             [InlineKeyboardButton(text="📄 𝗣𝗮𝗴𝗲 1/1", callback_data="pages")]
         ]
             for file in files
-        ]
-        
-    btn.insert(0,
-            [
-                InlineKeyboardButton("🎭 KGF ALL", url="https://t.me/samraott1234/65"),
-            ])
-
-    btn.insert(0, [
-        InlineKeyboardButton("🅷🅾🆆 🆃🅾 🅳🅾🆆🅽🅻🅾🅰🅳", url="https://youtu.be/KAXxaB1j_dE")#unknown
-    ])
             
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
