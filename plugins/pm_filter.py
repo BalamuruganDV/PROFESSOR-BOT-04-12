@@ -215,6 +215,17 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
+        
+    btn.insert(0,
+            [
+                InlineKeyboardButton("🎭 KGF ALL", url="https://t.me/samraott1234/65"),
+                InlineKeyboardButton("ADMIN", url="https://t.me/Priyanka_samrottbot")
+            ])
+
+    btn.insert(0, [
+        InlineKeyboardButton("🅷🅾🆆 🆃🅾 🅳🅾🆆🅽🅻🅾🅰🅳", url="https://youtu.be/KAXxaB1j_dE")#unknown
+    ])
+    
 
     if 0 < offset <= 10:
         off_set = 0
@@ -1293,6 +1304,17 @@ async def auto_filter(client, msg, spoll=False):
             ]
             for file in files
         ]
+        
+    btn.insert(0,
+            [
+                InlineKeyboardButton("🎭 KGF ALL", url="https://t.me/samraott1234/65"),
+                InlineKeyboardButton("ADMIN", url="https://t.me/Priyanka_samrottbot")
+            ])
+
+    btn.insert(0, [
+        InlineKeyboardButton("कैसे डाउनलोड करते है", url="https://youtu.be/KAXxaB1j_dE")#unknown
+    ])
+    
 
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
@@ -1304,7 +1326,7 @@ async def auto_filter(client, msg, spoll=False):
         )
     else:
         btn.append(
-            [InlineKeyboardButton(text="📄 𝗣𝗮𝗴𝗲 1/1", callback_data="pages")]
+            [InlineKeyboardButton(text="📄 𝗣𝗮𝗴𝗲 1/1", callback_data="pages")]       
         )
     imdb = await get_poster(search, file=(files[0]).file_name) if settings["imdb"] else None
     TEMPLATE = settings['template']
@@ -1343,26 +1365,26 @@ async def auto_filter(client, msg, spoll=False):
             **locals()
         )
     else:
-        cap = f"Here is what i found for your query {search}"
+        cap = f"आपकी क्वेरी के लिए मुझे यह मिला है {search}"
     if imdb and imdb.get('poster'):
         try:
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(8000)
             await hehe.delete()            
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
             hmm = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))           
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(8000)
             await hmm.delete()            
         except Exception as e:
             logger.exception(e)
             fek = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(8000)
             await fek.delete()
     else:
         fuk = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-        await asyncio.sleep(IMDB_DELET_TIME)
+        await asyncio.sleep(8000)
         await fuk.delete()        
     if spoll:
         await msg.message.delete()
@@ -1439,26 +1461,26 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
             **locals()
         )
     else:
-        cap = f"Here is what i found for your query {search}"
+        cap = f"ਇਹ ਉਹ ਹੈ ਜੋ ਮੈਨੂੰ ਤੁਹਾਡੀ ਪੁੱਛਗਿੱਛ ਲਈ ਮਿਲਿਆ {search}"
     if imdb and imdb.get('poster'):
         try:
             hehe = await message.reply_photo(photo=imdb.get('poster'), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(8000)
             await hehe.delete()            
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
             pic = imdb.get('poster')
             poster = pic.replace('.jpg', "._V1_UX360.jpg")
             hmm = await message.reply_photo(photo=poster, caption=cap, reply_markup=InlineKeyboardMarkup(btn))           
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(8000)
             await hmm.delete()            
         except Exception as e:
             logger.exception(e)
             fek = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-            await asyncio.sleep(IMDB_DELET_TIME)
+            await asyncio.sleep(8000)
             await fek.delete()
     else:
         fuk = await message.reply_text(cap, reply_markup=InlineKeyboardMarkup(btn))
-        await asyncio.sleep(IMDB_DELET_TIME)
+        await asyncio.sleep(8000)
         await fuk.delete()        
     if pmspoll:
         await msg.message.delete()
@@ -1472,7 +1494,7 @@ async def pm_spoll_choker(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name.")
+        k = await msg.reply("भाई/बहन कृपया Google पर अपनी स्पेलिंग चेक करें.")
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -1501,14 +1523,14 @@ async def pm_spoll_choker(msg):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist))  # removing duplicates
     if not movielist:
-        k = await msg.reply("I couldn't find anything related to that. Check your spelling")
+        k = await msg.reply("भाई/बहन कृपया Google पर अपनी स्पेलिंग चेक करें")
         await asyncio.sleep(8)
         await k.delete()
         return
     PM_SPELL_CHECK[msg.id] = movielist
     btn = [[InlineKeyboardButton(text=movie.strip(), callback_data=f"pmspolling#{user}#{k}")] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'pmspolling#{user}#close_spellcheck')])
-    await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?", reply_markup=InlineKeyboardMarkup(btn), reply_to_message_id=msg.id)
+    await msg.reply("भाई/बहन कृपया Google पर अपनी स्पेलिंग चेक करें", reply_markup=InlineKeyboardMarkup(btn), reply_to_message_id=msg.id)
 
 
 async def advantage_spell_chok(msg):
@@ -1520,7 +1542,7 @@ async def advantage_spell_chok(msg):
     g_s += await search_gagala(msg.text)
     gs_parsed = []
     if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name.")
+        k = await msg.reply("भाई/बहन कृपया Google पर अपनी स्पेलिंग चेक करें")
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -1549,7 +1571,7 @@ async def advantage_spell_chok(msg):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist))  # removing duplicates
     if not movielist:
-        k = await msg.reply("I couldn't find anything related to that. Check your spelling")
+        k = await msg.reply("भाई/बहन कृपया Google पर अपनी स्पेलिंग चेक करें")
         await asyncio.sleep(8)
         await k.delete()
         return
@@ -1561,7 +1583,7 @@ async def advantage_spell_chok(msg):
         )
     ] for k, movie in enumerate(movielist)]
     btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?",
+    await msg.reply("मुझे इससे संबंधित कुछ भी नहीं मिला क्या आपका मतलब इनमें से किसी से था?",
                     reply_markup=InlineKeyboardMarkup(btn))
 
 async def manual_filters(client, message, text=False):
@@ -1636,7 +1658,7 @@ async def global_filters(client, message, text=False):
                                 disable_web_page_preview=True,
                                 reply_to_message_id=reply_id
                             )
-                            await asyncio.sleep(IMDB_DELET_TIME)
+                            await asyncio.sleep(8000)
                             await knd3.delete()
                             await message.delete()
 
@@ -1649,7 +1671,7 @@ async def global_filters(client, message, text=False):
                                 reply_markup=InlineKeyboardMarkup(button),
                                 reply_to_message_id=reply_id
                             )
-                            await asyncio.sleep(IMDB_DELET_TIME)
+                            await asyncio.sleep(8000)
                             await knd2.delete()
                             await message.delete()
 
@@ -1660,7 +1682,7 @@ async def global_filters(client, message, text=False):
                             caption=reply_text or "",
                             reply_to_message_id=reply_id
                         )
-                        await asyncio.sleep(IMDB_DELET_TIME)
+                        await asyncio.sleep(8000)
                         await knd1.delete()
                         await message.delete()
 
@@ -1672,7 +1694,7 @@ async def global_filters(client, message, text=False):
                             reply_markup=InlineKeyboardMarkup(button),
                             reply_to_message_id=reply_id
                         )
-                        await asyncio.sleep(IMDB_DELET_TIME)
+                        await asyncio.sleep(8000)
                         await knd.delete()
                         await message.delete()
 
@@ -1681,8 +1703,3 @@ async def global_filters(client, message, text=False):
                 break
     else:
         return False
-
-
-
-
-
